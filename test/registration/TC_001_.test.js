@@ -1,6 +1,7 @@
 const { Builder, By } = require('selenium-webdriver');
 const chrome = require('selenium-webdriver/chrome');
 const ModalWindowPage = require('../../pages/ModalWindowPage');
+const testData = require('../../data/testData.json');
 
 describe('TC_001: Успешная регистрация пользователя с валидным номером телефона', () => {
   let driver;
@@ -26,10 +27,10 @@ describe('TC_001: Успешная регистрация пользовател
   test('Successful User Registration', async () => {
     const persCabinetBtn = await driver.findElement(By.css('.app-header__dashboard-login'));
     await persCabinetBtn.click();
-    await modalWindow.enterPhoneNumber('9268397648');
+    await modalWindow.enterPhoneNumber(testData.validUser.phoneNumber);
     await modalWindow.clickGetSmsButton();
     await modalWindow.waitForSmsInput();
-    await modalWindow.enterSmsCode('1234');
+    await modalWindow.enterSmsCode(testData.validUser.smsCode); //нужно использовать мок смс-кодаБ либо как-то доставать смс-код
 
     const logs = await driver.manage().logs().get('performance');
     const loginRequest = logs.find(entry => entry.message.includes('/api/personal-cabinet/v2_0/authentication/login'));

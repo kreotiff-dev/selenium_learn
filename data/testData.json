@@ -1,0 +1,11 @@
+{
+    "validUser": {
+      "phoneNumber": "9260000011",
+      "smsCode": "1234"
+    },
+    "invalidUser": {
+      "phoneNumber": "900000000",
+      "expectedErrorMessage": "Введите номер телефона"
+    }
+  }
+  

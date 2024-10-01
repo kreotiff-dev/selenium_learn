@@ -1,6 +1,7 @@
 const { Builder, By } = require('selenium-webdriver');
 const chrome = require('selenium-webdriver/chrome');
 const ModalWindowPage = require('../../pages/ModalWindowPage');
+const testData = require('../../data/testData.json');
 
 describe('TC_002: Регистрация с некорректным номером телефона', () => {
   let driver;
@@ -26,7 +27,7 @@ describe('TC_002: Регистрация с некорректным номер�
   test('Регистрация с некорректным номером телефона', async () => {
     const persCabinetBtn = await driver.findElement(By.css('.app-header__dashboard-login'));
     await persCabinetBtn.click();
-    await modalWindow.enterPhoneNumber('900000000');  
+    await modalWindow.enterPhoneNumber(testData.invalidUser.phoneNumber);  
     await modalWindow.clickGetSmsButton();
 
     const errorText = await modalWindow.getErrorMessage();
